@@ -1,0 +1,274 @@
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: " ";
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+body {
+    font-family: Lato, "Helvetica Neue", sans-serif;
+    font-size: 18px;
+    line-height: 1.72222;
+    color: #333333;
+}
+
+a {
+    color: #1976D2;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+p {
+    margin: 2em 0;
+    line-height: 30px;
+}
+
+.nav-main {
+    border: solid #dddddd;
+    border-width: 1px 1px 0 1px;
+    position: relative;
+    max-width: 1170px;
+    margin: 50px auto 25px auto;
+    background-color: #f5f5f5;
+    z-index: 15;
+}
+
+.nav-main a {
+    text-transform: lowercase;
+    font-variant: small-caps;
+    line-height: 40px;
+    color: #333333;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    width: 50%;
+
+}
+
+.nav-main a:hover {
+    text-decoration: underline;
+}
+
+.nav-main > a {
+    border-bottom: 1px solid #dddddd;
+}
+
+.nav-main > section {
+    display: inline-block;
+    width: 50%;
+    flex-grow: 1;
+    background-color: #f5f5f5;
+    transition: background-color .3s linear;
+}
+
+.nav-main > section:hover {
+    background-color: white;
+}
+
+.nav-main section > a {
+    width: 100%;
+    border: solid #dddddd;
+    border-width: 0 0 1px 0;
+    transition: border-width .3s linear;
+}
+
+.nav-main section:hover > a {
+    border-width: 0 1px;
+    background-color: white;
+}
+
+.nav-main section:first-of-type:hover a {
+    border-width: 0 1px 0 0;
+}
+
+.nav-main section:last-of-type:hover a {
+    border-width: 0 0 0 1px;
+}
+
+.nav-main section nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin: 0 -1px 0 -1px;
+    max-height: 0;
+    overflow-y: hidden;
+    transition: .3s ease-in-out;
+    transition-property: max-height, padding;
+    border: solid #dddddd;
+    border-width: 0 1px;
+    padding: 0 20px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    background-color: white;
+    z-index: 1000;
+}
+
+.nav-main section:hover nav {
+    max-height: 200px;
+    padding: 10px 20px;
+    border-width: 0 1px 1px 1px;
+}
+
+.nav-main nav > a {
+    display: inline-block;
+    width: 25%;
+}
+
+.container {
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.container-small {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.contact .container-small {
+    background-color: #f5f5f5;
+    box-sizing: border-box;
+    border: 1px solid #dddddd;
+    padding: 0 20px;
+}
+
+.projects-container {
+    margin: 0 -10px;
+    z-index: 5;
+}
+
+.projects section {
+    width: 33.333%;
+    float: left;
+    background-color: white;
+}
+
+.projects section > div {
+    border: 1px solid #dddddd;
+    margin: 10px;
+    position: relative;
+}
+
+.projects section img {
+    width: 100%;
+    display: block;
+    height: 200px;
+}
+
+.projects section h2 {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 80%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.projects section h2 a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+}
+
+.project {
+    position: absolute;
+    margin: 0;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    padding-bottom: 50px;
+}
+
+.project header {
+    position: relative;
+    border-bottom: 1px solid #dddddd;
+    margin-bottom: 50px;
+    min-height: 200px;
+}
+
+.project header img {
+    width: 100%;
+}
+
+.project header h1 {
+    position: absolute;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .2) 80%);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.project header h1 a {
+    display: block;
+    color: white;
+    padding: 10px 20px;
+}
+
+.project header h1 a {
+    padding: 10px 0;
+}
+
+.project .frame-wrap {
+    max-width: 600px;
+    padding: 20px 0;
+    background: #f5f5f5;
+    border: 1px solid #dddddd;
+    margin: 50px auto;
+}
+
+.project iframe {
+    display: block;
+    width: 600px;
+    margin: 0 auto;
+    height: 500px;
+    border: none;
+}
+
+.project figure {
+    margin: 2em 0;
+    border: 1px solid #dddddd;
+}
+.project figure figcaption {
+    font-style: italic;
+    padding: 1em;
+}
+
+#background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    background: #aaa;
+}
+
+@media (max-width: 620px) {
+    .container-small {
+        margin: 0 20px;
+    }
+
+    .project .frame-wrap {
+        width: 100%;
+        border-width: 1px 0;
+    }
+    .project iframe {
+        width: 100%;
+    }
+
+    .projects section {
+        width: 50%;
+    }
+}

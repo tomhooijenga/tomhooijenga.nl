@@ -15,6 +15,6 @@
         </p>
     </div>
     <div class="frame-wrap">
-        <iframe id="archness" src="../assets/demo/archer/"></iframe>
+        <iframe id="archness" src="/assets/demo/archer/"></iframe>
     </div>
 </article>

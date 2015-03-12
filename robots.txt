@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: google3058f0b8482f8049.html
 Disallow: /assets/
-Disallow: /_projects/
+Disallow: /pages/
+Disallow: /templates/

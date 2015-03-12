@@ -18,6 +18,6 @@
 
     </div>
     <div class="frame-wrap">
-        <iframe id="calcframe" src="http://tomhooijenga.nl/calculator/" width="100%"></iframe>
+        <iframe id="calcframe" src="/assets/demo/calc/" width="100%"></iframe>
     </div>
 </article>

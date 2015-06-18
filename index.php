@@ -1,5 +1,8 @@
 <?php
 
+// WEIRD ASS FIX
+$_SERVER['REQUEST_METHOD'] = 'GET';
+
 require 'vendor/autoload.php';
 
 $menu = require 'data/menu.php';

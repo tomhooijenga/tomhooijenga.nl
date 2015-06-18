@@ -1,51 +1,35 @@
 <?php
 
-$slug = substr($_SERVER['REQUEST_URI'], 1) ?: 'contact';
+require 'vendor/autoload.php';
 
-$menu = json_decode(file_get_contents(realpath('assets/menu.json')));
+$menu = require 'data/menu.php';
 
-$page = page($menu, $slug);
+$app = new \Slim\Slim([
+    'templates.path' => './views'
+]);
 
-if (strpos($slug, 'admin') === 0)
+$app->view()->set('app', $app);
+$app->view()->set('menu', $menu);
+
+$app->get('/projects', function () use ($app)
 {
-    $template = 'admin';
-}
-else if(strpos($slug, 'ajax') === 0)
-{
-    $page = page($menu, substr($slug, 5));
+    $app->render('template.php');
+})->name('projects');
 
-    $template = 'ajax';
-}
-else if ($page !== null)
+$app->get('/(:page)', function ($page = 'contact') use ($app, $menu)
 {
-    $template = 'template';
-}
-else
-{
-    $template = '404';
-}
-
-require 'templates' . DIRECTORY_SEPARATOR . $template . '.php';
-
-function recursive($callback)
-{
-    return call_user_func_array($callback, func_get_args());
-}
-
-function page($menu, $slug)
-{
-    return recursive(function($callback, $m, $slug)
+    if (!array_key_exists($page, $menu))
     {
-        foreach($m as $p)
-        {
-            if ($p->slug === $slug)
-            {
-                return $p;
-            }
-            if (isset($p->children))
-            {
-                return $callback($callback, $p->children, $slug);
-            }
-        }
-    }, $menu, $slug);
-}
+        $app->notFound();
+    }
+
+    $app->render('template.php', compact('page'));
+})->name('page');
+
+// 404
+$app->notFound(function() use ($app)
+{
+    $app->render('404.php');
+});
+
+$app->run();

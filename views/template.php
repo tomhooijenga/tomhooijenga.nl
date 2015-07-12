@@ -27,15 +27,16 @@
     <meta name="theme-color" content="#034485">
 
     <link href="/assets/css/normalize.css" rel="stylesheet" />
-    <link href="/assets/css/styles.css" rel="stylesheet" id="fancy" />
+    <link href="/assets/css/styles.css" rel="stylesheet" />
     <script src="/assets/js/modernizr.js"></script>
 </head>
 <body>
-    <div class="menu">
-        <a href="<?php echo $app->urlFor('projects'); ?>" class="menu-button">
-            th
-        </a>
-    </div>
+    <a href="<?php echo $app->urlFor('projects'); ?>" class="menu">
+        th
+        <span>
+            menu
+        </span>
+    </a>
 
     <nav class="menu-content">
         <?php foreach ($menu as $slug => $_page): ?>
@@ -44,7 +45,12 @@
                 if (isset($page) && $slug === $page) $classes[] = 'open';
             ?>
             <div id="<?php echo $slug; ?>" class="<?php echo join(' ', $classes); ?>">
-                <?php echo $app->view()->fetch($slug . '.php'); ?>
+                <div class="page-title">
+                    <?php echo $_page['title']; ?>
+                </div>
+                <div class="page-content">
+                    <?php echo $app->view()->fetch($slug . '.php'); ?>
+                </div>
                 <a href="<?php echo $app->urlFor('page', ['page' => $slug]); ?>">
                     <?php echo $_page['title']; ?>
                 </a>
@@ -65,20 +71,7 @@
         <?php endif; ?>
     </div>
 
-    <script>
-        if (!document.addEventListener)
-        {
-            document.querySelector('head').removeChild(document.querySelector('#fancy'));
-        }
-        Modernizr.load({
-            test: !!document.addEventListener,
-            yep: ['assets/js/evt.js', 'assets/js/site.js'],
-            nope: 'assets/css/boring.css'
-        });
-        Modernizr.load({
-            test: !!document.addEventListener && Modernizr.classList,
-            nope: ['/assets/js/classlist-polyfill.js']
-        });
-    </script>
+    <script src="/assets/js/classlist-polyfill.js" async></script>
+    <script src="/assets/js/site.js" async></script>
 </body>
 </html>

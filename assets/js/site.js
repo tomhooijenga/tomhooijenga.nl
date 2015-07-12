@@ -1,6 +1,6 @@
 var content = document.querySelector('.content'),
     animated = document.querySelector('.animated'),
-    selected = document.querySelector('.page.open'),
+    selected = document.querySelector('.page.open .page-content'),
     isOpen = !!selected,
     requestAnimationFrame = Modernizr.prefixed('requestAnimationFrame', window) || function (callback) {
             callback()
@@ -12,19 +12,25 @@ if (!selected) {
     cleanClone(selected, content);
 }
 
-Evt('.menu-button').on('click', function (e) {
+document.querySelector('.menu').addEventListener('click', function (e)
+{
     e.preventDefault();
     toggle();
     navigate();
 });
 
-Evt('.menu-content').on('click', '.page', function (e) {
+document.querySelector('.menu-content').addEventListener('click', function (e)
+{
     e.preventDefault();
+
+    var page = e.target.parentNode;
+
+    if (!page.classList.contains('page')) return;
 
     isOpen = true;
 
-    if (selected !== this) {
-        selected = this;
+    if (selected !== page) {
+        selected = page.querySelector('.page-content');
         cleanClone(selected, animated);
         cleanClone(selected, content);
     }
@@ -47,7 +53,7 @@ window.addEventListener('popstate', function (e) {
     {
         small();
         isOpen = true;
-        selected = document.getElementById(page || 'contact');
+        selected = document.querySelector('#' + (page || 'projects') + ' .page-content');
         cleanClone(selected, animated);
         cleanClone(selected, content);
         big();
@@ -121,10 +127,21 @@ function cleanClone(contentEl, targetEl) {
         targetEl.removeChild(targetEl.firstChild);
     }
 
-    targetEl.appendChild(contentEl.firstElementChild.cloneNode(true));
+    var node = contentEl.firstChild;
+
+    while (node)
+    {
+        if (node.nodeType !== 8)
+        {
+            targetEl.appendChild(node.cloneNode(true));
+        }
+
+        node = node.nextSibling;
+    }
 }
 
+
 function navigate() {
-    var link = document.querySelector('#' + selected.id + ' > a');
+    var link = document.querySelector('#' + selected.parentNode.id + ' > a');
     window.history.pushState(null, null, (isOpen) ? link.href : '/projects');
 }

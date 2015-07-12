@@ -1,12 +1,3 @@
-.clearfix:before,
-.clearfix:after {
-    display: table;
-    content: " ";
-}
-
-.clearfix:after {
-    clear: both;
-}
 *,
 *::before,
 *::after {
@@ -15,7 +6,7 @@
 
 body {
     font-family: Verdana, sans-serif;
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: 1.72222;
     color: #333333;
     background-color: #eee;
@@ -53,51 +44,52 @@ iframe {
 figure {
     margin: 2em 0;
 }
+
 figure img {
     border: 1px solid #dddddd;
 }
+
 figcaption {
     font-style: italic;
     margin: 1em auto 0 auto;
     max-width: 600px;
 }
 
-.hidden {
-    opacity: 0;
-}
-
 .menu {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
+    margin: 25px;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2
-}
-
-.menu:hover .menu-button {
-    transform: scale(1.1);
-    text-decoration: none;
-}
-
-.menu-button {
+    z-index: 2;
     display: block;
     text-align: center;
+    text-transform: lowercase;
     color: #034485;
-    width: 100px;
-    height: 100px;
-    line-height: 100px;
     font-size: 50px;
+    line-height: 80px;
     font-family: "Georgia", Times, serif;
     font-style: italic;
-    margin: 25px;
-    transition: transform .1s ease-in-out;
-    background: none;
     border: 2px solid #034485;
+    transition: transform .2s ease-in-out;
+    background: rgba(255, 255, 255, 0.5);
 }
 
-.menu-button:focus {
-    outline: none;
+.menu span {
+    position: absolute;
+    line-height: 20px;
+    font-size: 18px;
+    bottom: 0;
+    left: 0;
+    display: block;
+    text-align: center;
+    width: 100%;
+}
+
+.menu:hover {
+    text-decoration: none;
+    transform: scale(1.1);
 }
 
 .menu-content {
@@ -111,18 +103,31 @@ figcaption {
 }
 
 .menu-content .page {
-    background-color: #ffffff;
     width: calc(50% - 50px);
     height: 100vh;
     margin: 25px;
     float: left;
-    overflow: hidden;
     cursor: pointer;
     position: relative;
     transition: box-shadow .2s ease-in-out;
 }
 
-.menu-content .page:hover {
+.page-title {
+    height: 100px;
+    line-height: 100px;
+    font-size: 2em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.page-content {
+    height: calc(100vh - 100px);
+    background: white;
+    overflow: hidden;
+}
+
+.page-content:hover {
     box-shadow: 0 0 0 4px #034485;
 }
 
@@ -147,6 +152,7 @@ figcaption {
     transition: all .5s ease-in-out;
     display: none;
 }
+
 .animated.show {
     display: block;
 }
@@ -161,6 +167,7 @@ figcaption {
     transition: 100ms ease;
     display: none;
 }
+
 .content.show {
     display: block;
 }
@@ -169,7 +176,6 @@ figcaption {
     margin: 0 auto;
     max-width: 600px;
 }
-
 
 /* contact page */
 
@@ -197,41 +203,48 @@ figcaption {
     text-decoration: none;
 }
 
-@media(max-width: 600px) {
+@media (max-width: 600px) {
     .menu {
-        position: fixed;
-        top: 0;
-        width: 100vw;
-        background-color: #ffffff;
-        border-bottom: 1px solid #dddddd;
-        height: 50px;
+        bottom: 0;
+        top: auto;
+        right: 0;
+        width: 100%;
+        margin: 0;
+        height: 3rem;
+        line-height: 3rem;
+        font-size: 1.5rem;
+        text-align: left;
+        padding: 0 2rem;
+        background: rgba(255, 255, 255, .8);
     }
 
-    .menu-button {
-        width: auto;
-        height: 36px;
-        margin: 5px;
-        line-height: 36px;
-        font-size: 25px;
-    }
-    .menu:hover .menu-button {
+    .menu:hover {
         transform: none;
+    }
+    .menu:active {
+        background: #f5f5f5;
+    }
+
+    .menu span {
+        top: 0;
+        font-size: 1rem;
+        line-height: 3rem;
+        right: 2rem;
+        text-align: right;
+        width: auto;
     }
 
     .menu-content {
         padding: 2em;
-        margin-top: 50px;
     }
 
-    .container:first-child {
-        padding-top: 50px;
-    }
-
-    .container {
+    .container,
+    figcaption{
         padding: 0 1em;
     }
 }
-@media(min-width: 600px) and (max-width: 900px) {
+
+@media (min-width: 600px) and (max-width: 900px) {
     .container {
         max-width: 700px;
         padding-left: 150px;

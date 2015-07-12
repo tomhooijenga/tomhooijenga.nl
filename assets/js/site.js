@@ -1,13 +1,13 @@
 var content = document.querySelector('.content'),
     animated = document.querySelector('.animated'),
-    selected = document.querySelector('.page.open .page-content'),
+    selected = document.querySelector('.page.open > .page-content'),
     isOpen = !!selected,
     requestAnimationFrame = Modernizr.prefixed('requestAnimationFrame', window) || function (callback) {
             callback()
         };
 
 if (!selected) {
-    selected = document.querySelector('.page');
+    selected = document.querySelector('.page > .page-content');
     cleanClone(selected, animated);
     cleanClone(selected, content);
 }
@@ -142,6 +142,8 @@ function cleanClone(contentEl, targetEl) {
 
 
 function navigate() {
+    console.log(selected);
+
     var link = document.querySelector('#' + selected.parentNode.id + ' > a');
     window.history.pushState(null, null, (isOpen) ? link.href : '/projects');
 }

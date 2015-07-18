@@ -18,7 +18,7 @@
         <li>Decrypt the ciphertext with the password we just got</li>
     </ol>
     <p>
-        The sudoku part was solved by <a href="http://nhum.com">Nick Hummel</a>.
+        The sudoku part was solved by <a href="http://nhum.nl">Nick Hummel</a>.
     </p>
     <p>
         Now, about the decryption part. The description states that the answer

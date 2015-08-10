@@ -53,7 +53,7 @@ window.addEventListener('popstate', function (e) {
     {
         small();
         isOpen = true;
-        selected = document.querySelector('#' + (page || 'projects') + ' .page-content');
+        selected = document.querySelector('#' + (page || 'contact') + ' .page-content');
         cleanClone(selected, animated);
         cleanClone(selected, content);
         big();
@@ -142,8 +142,6 @@ function cleanClone(contentEl, targetEl) {
 
 
 function navigate() {
-    console.log(selected);
-
     var link = document.querySelector('#' + selected.parentNode.id + ' > a');
     window.history.pushState(null, null, (isOpen) ? link.href : '/projects');
 }

@@ -172,6 +172,10 @@ figcaption {
     display: block;
 }
 
+.content article {
+    margin-bottom: 2em;
+}
+
 .container {
     margin: 0 auto;
     max-width: 600px;
@@ -236,6 +240,10 @@ figcaption {
 
     .menu-content {
         padding: 2em;
+    }
+
+    .content > article {
+        margin-bottom: 4em;
     }
 
     .container,

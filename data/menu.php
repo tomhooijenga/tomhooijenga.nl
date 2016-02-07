@@ -10,7 +10,7 @@ return [
     'sync-cms' => [
         'title' => 'SYNC News CMS'
     ],
-    'hack-this-site' => [
-        'title' => 'Hack this site Challenges'
+    'pwn-hackathon' => [
+        'title' => 'PWN Hackathon'
     ]
 ];

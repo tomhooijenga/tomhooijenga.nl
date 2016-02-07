@@ -207,6 +207,12 @@ figcaption {
     text-decoration: none;
 }
 
+/* infinity */
+
+.infinity iframe {
+    height: 830px;
+}
+
 @media (max-width: 600px) {
     .menu {
         bottom: 0;

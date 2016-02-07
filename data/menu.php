@@ -12,5 +12,8 @@ return [
     ],
     'pwn-hackathon' => [
         'title' => 'PWN Hackathon'
+    ],
+    'infinity-loop-solver' => [
+        'title' => '&infin; Loop solver'
     ]
 ];

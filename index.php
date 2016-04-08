@@ -1,34 +1,14 @@
 <?php
 
-// WEIRD ASS FIX
-$_SERVER['REQUEST_METHOD'] = 'GET';
-
-require 'vendor/autoload.php';
+$templates = './views/';
 
 $menu = require 'data/menu.php';
+$uri = $_SERVER['REQUEST_URI'];
+$page = trim($uri, '/') ?: 'contact';
 
-$app = new \Slim\Slim([
-    'templates.path' => './views'
-]);
-
-$app->view()->set('app', $app);
-$app->view()->set('menu', $menu);
-
-$app->get('/projects', function () use ($app) {
-    $app->render('template.php');
-})->name('projects');
-
-$app->get('/(:page)', function ($page = 'contact') use ($app, $menu) {
-    if (!array_key_exists($page, $menu)) {
-        $app->notFound();
-    }
-
-    $app->render('template.php', compact('page'));
-})->name('page');
-
-// 404
-$app->notFound(function () use ($app) {
-    $app->render('404.php');
-});
-
-$app->run();
+if ($page === 'projects' || array_key_exists((string)$page, $menu)) {
+    require $templates . DIRECTORY_SEPARATOR . 'template.php';
+} else {
+    header('HTTP/1.0 404 Not Found');
+    require $templates . DIRECTORY_SEPARATOR . '404.php';
+}

@@ -1,147 +1,94 @@
-var content = document.querySelector('.content'),
+var router = new Navigo(window.location.origin),
+    selected = document.querySelector('.page.open'),
+    content = document.querySelector('.content'),
     animated = document.querySelector('.animated'),
-    selected = document.querySelector('.page.open > .page-content'),
-    isOpen = !!selected,
-    requestAnimationFrame = Modernizr.prefixed('requestAnimationFrame', window) || function (callback) {
-            callback()
-        };
+    transitionDuration = 500;
 
-if (!selected) {
-    selected = document.querySelector('.page > .page-content');
-    cleanClone(selected, animated);
-    cleanClone(selected, content);
-}
+router.on('/projects/', function () {
+    if (selected) {
+        var position = selected.getBoundingClientRect();
 
-document.querySelector('.menu').addEventListener('click', function (e)
-{
-    e.preventDefault();
-    toggle();
-    navigate();
+        animated.classList.add('show');
+
+        window.setTimeout(function () {
+            animated.style.transitionDuration = transitionDuration + 'ms';
+            animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
+            animated.style.width = window.getComputedStyle(selected).getPropertyValue('width');
+
+            window.setTimeout(function () {
+                animated.classList.remove('show');
+            }, 510);
+        }, 0);
+    }
+
+    content.classList.remove('show');
 });
 
-document.querySelector('.menu-content').addEventListener('click', function (e)
-{
-    e.preventDefault();
-
-    var page = e.target.parentNode;
-
-    if (!page.classList.contains('page')) return;
-
-    isOpen = true;
-
-    if (selected !== page) {
-        selected = page.querySelector('.page-content');
-        cleanClone(selected, animated);
-        cleanClone(selected, content);
-    }
-
-    big();
-    navigate();
+router.on({
+    '/:project/': project,
+    '*': project
 });
 
-animated.addEventListener('transitionend', transitionEnd);
+function project(params) {
+    var project = params && params.project || 'contact';
 
-window.addEventListener('popstate', function (e) {
-    var page = window.location.pathname.slice(1);
+    selected = document.querySelector('#' + project + ' > .page-content');
 
-    if (page === 'projects')
-    {
-        isOpen = false;
-        small();
-    }
-    else
-    {
-        small();
-        isOpen = true;
-        selected = document.querySelector('#' + (page || 'contact') + ' .page-content');
-        cleanClone(selected, animated);
-        cleanClone(selected, content);
-        big();
-    }
-});
-
-function transitionEnd() {
-    animated.classList.remove('show');
-
-    var toggle = isOpen ? "add" : "remove";
-
-    content.classList[toggle]('show');
-}
-
-function toggle() {
-    if (!animated.firstElementChild) {
-        cleanClone(selected, animated);
-    }
-
-    if (isOpen) {
-        isOpen = false;
-        small();
-    }
-    else {
-        isOpen = true;
-        big();
-    }
-}
-
-function big() {
     var position = selected.getBoundingClientRect();
 
-    animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
-    animated.style.width = window.getComputedStyle(selected).width;
+    clone(selected, content);
+    clone(selected, animated);
 
     animated.classList.add('show');
 
-    requestAnimationFrame(function () {
+    animated.style.transitionDuration = '0ms';
+    animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
+    animated.style.width = window.getComputedStyle(selected).getPropertyValue('width');
+
+    window.setTimeout(function () {
+        animated.style.transitionDuration = transitionDuration + 'ms';
         animated.style.transform = 'translate(0, 0) scale(1)';
         animated.style.width = '';
 
-        if (!Modernizr.csstransitions) {
-            transitionEnd();
-        }
+        window.setTimeout(function () {
+            animated.classList.remove('show');
+            content.classList.add('show');
+        }, 510);
+    }, 0);
+}
+
+document.querySelector('.menu').addEventListener('click', function (e) {
+    e.preventDefault();
+
+    if (window.location.href === this.href) {
+        window.history.back();
+    } else {
+        router.navigate(this.pathname.slice(1));
+    }
+});
+
+var links = document.querySelectorAll('.page-link');
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+
+    link.addEventListener('click', function (e) {
+        e.preventDefault();
+        router.navigate(this.pathname.slice(1));
     });
 }
 
-function small() {
-    var position = selected.getBoundingClientRect();
-
-    animated.classList.add('show');
-    content.classList.remove('show');
-
-    requestAnimationFrame(function () {
-        animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
-        animated.style.width = window.getComputedStyle(selected).width;
-
-        if (!Modernizr.csstransitions) {
-            transitionEnd();
-        }
-    });
-}
-
-/**
- *
- * @param contentEl
- * @param targetEl
- */
-function cleanClone(contentEl, targetEl) {
-    while (targetEl.firstChild) {
-        targetEl.removeChild(targetEl.firstChild);
+function clone(from, to) {
+    while (to.firstChild) {
+        to.removeChild(to.firstChild);
     }
 
-    var node = contentEl.firstChild;
+    var node = from.firstChild;
 
-    while (node)
-    {
-        if (node.nodeType !== 8)
-        {
-            targetEl.appendChild(node.cloneNode(true));
+    while (node) {
+        if (node.nodeType !== 8) {
+            to.appendChild(node.cloneNode(true));
         }
 
         node = node.nextSibling;
     }
-}
-
-
-function navigate() {
-    var link = document.querySelector('#' + selected.parentNode.id + ' > a');
-    window.history.pushState(null, null, (isOpen) ? link.href : '/projects');
 }

@@ -28,11 +28,10 @@
 
     <link href="/assets/css/normalize.css" rel="stylesheet"/>
     <link href="/assets/css/styles.css" rel="stylesheet"/>
-    <link href="/assets/css/404.css" rel="stylesheet" />
-    <script src="/assets/js/modernizr.js"></script>
+    <link href="/assets/css/404.css" rel="stylesheet"/>
 </head>
 <body>
-<a href="<?php echo $app->urlFor('projects'); ?>" class="menu">
+<a href="/projects" class="menu">
     th
     <span>
         menu
@@ -45,8 +44,8 @@
         We couldn't find the resource you are looking for.
     </p>
     <p>
-        Try going back to the <a href="<?php echo $app->urlFor('page'); ?>">Homepage</a> or check out some of my
-        <a href="<?php echo $app->urlFor('page', ['page' => 'projects']); ?>">Projects</a>.
+        Try going back to the <a href="/">Homepage</a> or check out some of my
+        <a href="/projects">Projects</a>.
     </p>
 </div>
 </body>

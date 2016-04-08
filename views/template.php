@@ -28,10 +28,13 @@
 
     <link href="/assets/css/normalize.css" rel="stylesheet" />
     <link href="/assets/css/styles.css" rel="stylesheet" />
-    <script src="/assets/js/modernizr.js"></script>
+
+    <!--[if lte IE 9]>
+        <script src="/assets/js/classlist-polyfill.js"></script>
+    <![endif]-->
 </head>
 <body>
-    <a href="<?php echo $app->urlFor('projects'); ?>" class="menu">
+    <a href="/projects" class="menu">
         th
         <span>
             menu
@@ -49,9 +52,9 @@
                     <?php echo $_page['title']; ?>
                 </div>
                 <div class="page-content">
-                    <?php echo $app->view()->fetch($slug . '.php'); ?>
+                    <?php require $templates . DIRECTORY_SEPARATOR . $slug . '.php'; ?>
                 </div>
-                <a href="<?php echo $app->urlFor('page', ['page' => $slug]); ?>">
+                <a class="page-link" href="/<?php echo $slug; ?>">
                     <?php echo $_page['title']; ?>
                 </a>
             </div>
@@ -66,13 +69,13 @@
         if (isset($page)) $classes[] = 'show';
     ?>
     <div class="<?php echo join(' ', $classes) ?>">
-        <?php if (isset($page)): ?>
-            <?php echo $app->view()->fetch($page . '.php'); ?>
+        <?php if ($page && $page !== 'projects'): ?>
+            <?php require $templates . DIRECTORY_SEPARATOR . $page . '.php' ?>
         <?php endif; ?>
     </div>
 
-    <script src="/assets/js/classlist-polyfill.js" async></script>
-    <script src="/assets/js/site.js" async></script>
+    <script src="/assets/js/navigo.js"></script>
+    <script src="/assets/js/site.js"></script>
     <script>
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 

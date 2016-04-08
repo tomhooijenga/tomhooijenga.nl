@@ -16,13 +16,5 @@
             If you have a question or just want to say hi, shoot me a mail anytime
             &rarr; <a href="mailto:info@tomhooijenga.nl">info@tomhooijenga.nl</a>
         </p>
-        <h2>Content</h2>
-        <nav>
-            <?php foreach ($menu as $slug => $_page): ?>
-                <a href="<?php echo $app->urlFor('page', ['page' => $slug]); ?>" class="container">
-                    <?php echo $_page['title']; ?>
-                </a>
-            <?php endforeach; ?>
-        </nav>
     </div>
 </article>

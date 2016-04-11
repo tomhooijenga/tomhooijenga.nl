@@ -1,24 +1,27 @@
 var router = new Navigo(window.location.origin),
-    selected = document.querySelector('.page.open'),
+    menu = document.querySelector('.menu-content'),
+    selected = document.querySelector('.page.open > .page-content'),
     content = document.querySelector('.content'),
     animated = document.querySelector('.animated'),
-    transitionDuration = 500;
+    transition = 'all 500ms ease-in-out';
 
 router.on('/projects/', function () {
     if (selected) {
-        var position = selected.getBoundingClientRect();
-
         animated.classList.add('show');
 
-        window.setTimeout(function () {
-            animated.style.transitionDuration = transitionDuration + 'ms';
+        window.requestAnimationFrame(function () {
+            menu.scrollTop = selected.parentNode.offsetTop - (window.innerHeight / 2);
+
+            var position = selected.getBoundingClientRect();
+
+            animated.style.transition = transition;
             animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
             animated.style.width = window.getComputedStyle(selected).getPropertyValue('width');
 
             window.setTimeout(function () {
                 animated.classList.remove('show');
-            }, 510);
-        }, 0);
+            }, 500);
+        });
     }
 
     content.classList.remove('show');
@@ -41,20 +44,20 @@ function project(params) {
 
     animated.classList.add('show');
 
-    animated.style.transitionDuration = '0ms';
+    animated.style.transition = '';
     animated.style.transform = 'translate(' + position.left + 'px, ' + position.top + 'px) scale(0.5)';
     animated.style.width = window.getComputedStyle(selected).getPropertyValue('width');
 
-    window.setTimeout(function () {
-        animated.style.transitionDuration = transitionDuration + 'ms';
+    window.requestAnimationFrame(function () {
+        animated.style.transitionDuration = transition;
         animated.style.transform = 'translate(0, 0) scale(1)';
         animated.style.width = '';
 
         window.setTimeout(function () {
             animated.classList.remove('show');
             content.classList.add('show');
-        }, 510);
-    }, 0);
+        }, 500);
+    });
 }
 
 document.querySelector('.menu').addEventListener('click', function (e) {

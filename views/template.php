@@ -31,6 +31,7 @@
 
     <!--[if lte IE 9]>
         <script src="/assets/js/classlist-polyfill.js"></script>
+        <script src="/assets/js/raf-polyfill.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -47,32 +48,32 @@
                 $classes = ['page', $slug];
                 if (isset($page) && $slug === $page) $classes[] = 'open';
             ?>
-            <div id="<?php echo $slug; ?>" class="<?php echo join(' ', $classes); ?>">
-                <div class="page-title">
+            <section id="<?php echo $slug; ?>" class="<?php echo join(' ', $classes); ?>">
+                <h2 class="page-title">
                     <?php echo $_page['title']; ?>
-                </div>
+                </h2>
                 <div class="page-content">
                     <?php require $templates . DIRECTORY_SEPARATOR . $slug . '.php'; ?>
                 </div>
                 <a class="page-link" href="/<?php echo $slug; ?>">
                     <?php echo $_page['title']; ?>
                 </a>
-            </div>
+            </section>
         <?php endforeach; ?>
     </nav>
 
-    <div class="animated">
-    </div>
+    <section class="animated">
+    </section>
 
     <?php
         $classes = ['content'];
         if (isset($page)) $classes[] = 'show';
     ?>
-    <div class="<?php echo join(' ', $classes) ?>">
+    <section class="<?php echo join(' ', $classes) ?>">
         <?php if ($page && $page !== 'projects'): ?>
             <?php require $templates . DIRECTORY_SEPARATOR . $page . '.php' ?>
         <?php endif; ?>
-    </div>
+    </section>
 
     <script src="/assets/js/navigo.js"></script>
     <script src="/assets/js/site.js"></script>

@@ -1,6 +1,3 @@
 User-agent: *
 Disallow: google3058f0b8482f8049.html
 Disallow: /assets/
-Disallow: /data/
-Disallow: /vendor/
-Disallow: /views/

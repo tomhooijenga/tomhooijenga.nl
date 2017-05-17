@@ -25,12 +25,136 @@
     <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#034485">
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            color: #333;
+            font-family: 'PT Sans', sans-serif;
+            display: flex;
+            height: 100vh;
+            font-size: 20px;
+            background-color: #f5f5f5;
+        }
 
+        p {
+            margin: 1rem 0;
+        }
+
+        a {
+            color: #763930
+        }
+
+        .container {
+            flex: 0 0 auto;
+            width: 50rem;
+            max-width: 100%;
+            margin: auto;
+            padding-bottom: 2rem;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+            background-color: white;
+        }
+
+        .section {
+            display: flex;
+            padding: 0 2rem;
+            flex-flow: row wrap;
+        }
+
+        .section__title {
+            margin: 2rem 0 1rem 0;
+            width: 100%;
+            border-bottom: 1px #0D1116 solid;
+        }
+
+        .header {
+            background: #0071BC;
+            padding: 2rem 5rem 0 5rem;
+            color: white;
+            margin-bottom: 4rem;
+            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+            align-items: flex-end;
+        }
+
+        .header__image {
+            width: 10rem;
+            height: 10rem;
+            border: 1rem #0071BC solid;
+            margin-bottom: -4rem;
+            border-radius: 100%;
+        }
+
+        .header__title {
+            margin: 0 0 1rem 0;
+        }
+
+        .contact__link {
+            text-decoration: none;
+            color: #763930;
+            line-height: 200%;
+            text-wrap: avoid;
+        }
+
+        .list {
+            flex: 1;
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 50rem) {
+            .header {
+                margin-bottom: 0;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            .header__image {
+                margin-bottom: 0;
+            }
+        }
+    </style>
 </head>
 <body>
-<a href="/" class="menu">
-    th
-</a>
+
+<main class="container">
+    <header class="section header">
+        <img class="header__image" src="profile.jpg"/>
+        <h1 class="header__title">Tom Hooijenga</h1>
+    </header>
+    <section class="section about">
+        <h2 class="section__title">About me</h2>
+        <p>
+            My name is Tom Hooijenga. I am a dutch software engineer. I've worked on some
+            high traffic sites for both frond- and backend.
+        </p>
+        <p>
+            Things I enjoy are solving puzzles, adding slightly too much animations on projects,
+            and JavaScript. They all come together beatifully in my latest fiddle:
+            <a href="https://tomhooijenga.github.io/Infinity-loop-solver/">A puzzle solver</a>.
+        </p>
+        <p>
+            If you have a question or just want to say hi, shoot me a mail anytime
+            &rarr; <a href="mailto:tomhooijenga@gmail.com">tomhooijenga@gmail.com</a>
+        </p>
+    </section>
+    <section class="section contact">
+        <h2 class="section__title">Contact</h2>
+        <ul class="list">
+            <li>
+                <a class="contact__link" href="https://github.com/tomhooijenga/">// GitHub</a>
+            </li>
+            <li>
+                <a class="contact__link" href="https://www.linkedin.com/in/tomhooijenga/">// LinkedIn</a>
+            </li>
+        </ul>
+        <ul class="list">
+            <li>
+                <a class="contact__link" href="mailto:tomhooijenga@gmail.com">// tomhooijenga@gmail.com</a>
+            </li>
+        </ul>
+    </section>
+</main>
 <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 

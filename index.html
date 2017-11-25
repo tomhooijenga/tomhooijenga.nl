@@ -25,7 +25,13 @@
     <meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
     <meta name="msapplication-config" content="/icons/browserconfig.xml">
     <meta name="theme-color" content="#034485">
-    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=PT+Sans" as="style" onload="this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans"></noscript>
+
     <style>
         body {
             margin: 0;
@@ -42,7 +48,7 @@
         }
 
         a {
-            color: #0071BC;
+            color: #0071bc;
             text-decoration: none;
         }
 
@@ -65,11 +71,11 @@
         .section__title {
             margin: 2rem 0 1rem 0;
             width: 100%;
-            border-bottom: 1px #0D1116 solid;
+            border-bottom: 1px #0d1116 solid;
         }
 
         .header {
-            background: #0071BC;
+            background: #0071bc;
             padding: 2rem 5rem 0 5rem;
             color: white;
             margin-bottom: 4rem;

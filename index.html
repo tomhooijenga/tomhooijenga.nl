@@ -37,7 +37,13 @@
 
 <main class="container">
     <header class="section header">
-        <img class="header__image" src="profile.jpg"/>
+        <div class="header__image-wrapper">
+            <picture>
+                <source srcset="img/happy.webp" type="image/webp">
+                <source srcset="img/happy.jpg" type="image/jpeg">
+                <img class="header__image" src="img/happy.jpg" alt="Me!" onload="this.classList.add('header__image--loaded');" />
+            </picture>
+        </div>
         <h1 class="header__title">Tom Hooijenga</h1>
     </header>
     <section class="section about">

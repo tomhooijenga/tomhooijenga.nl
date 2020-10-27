@@ -59,7 +59,7 @@ a {
 
 .header__image {
     border-radius: 100%;
-    /*opacity: 0;*/
+    opacity: 0;
     transition: opacity .2s ease-in-out;
     width: 10rem;
     height: 10rem;

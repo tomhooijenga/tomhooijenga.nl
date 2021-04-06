@@ -60,9 +60,13 @@ a {
 .header__image {
     border-radius: 100%;
     opacity: 0;
-    transition: opacity .2s ease-in-out;
+    transition: opacity .2s ease-in-out, transform .1s ease-in-out;
     width: 10rem;
     height: 10rem;
+}
+
+.header__image:hover {
+    transform: scale(1.1);
 }
 
 .header__image--loaded {
@@ -73,8 +77,34 @@ a {
     margin: 0 0 1rem 0;
 }
 
+.about__link {
+    display: inline-block;
+}
+
+.about__link::after {
+    content: '';
+    display: block;
+    height: 1px;
+    transform: scaleX(0);
+    background-color: #0071bc;
+    transition: transform .2s ease-in-out;
+}
+
+.about__link:hover::after {
+    transform: scaleX(1);
+}
+
 .contact__link {
     line-height: 200%;
+}
+
+.contact__link::before {
+    content: '// ';
+    transition: margin-right .1s ease-in-out;
+}
+
+.contact__link:hover::before {
+    margin-right: 0.25rem;
 }
 
 .list {

@@ -28,9 +28,7 @@ a {
 }
 
 .section {
-    display: flex;
     padding: 0 2rem;
-    flex-flow: row wrap;
 }
 
 .section__title {
@@ -94,7 +92,14 @@ a {
     transform: scaleX(1);
 }
 
+.contact__list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
 .contact__link {
+    white-space: nowrap;
     line-height: 200%;
 }
 
@@ -105,13 +110,6 @@ a {
 
 .contact__link:hover::before {
     margin-right: 0.25rem;
-}
-
-.list {
-    flex: 1;
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0;
 }
 
 @media (max-width: 50rem) {

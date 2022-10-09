@@ -39,11 +39,12 @@ a {
 
 .header {
     background: #0071bc;
-    padding: 2rem 5rem 0 5rem;
+    padding-top: 4rem;
     color: white;
     margin-bottom: 4rem;
     align-items: flex-end;
     filter: drop-shadow(0 2px 5px rgba(0, 0, 0, .25));
+    display: flex;
 }
 
 .header__image-wrapper {
@@ -51,7 +52,7 @@ a {
     height: 10rem;
     background-color: #0071bc;
     padding: 1rem;
-    margin-bottom: -4rem;
+    margin: 0 0 -4rem auto;
     border-radius: 100%;
 }
 

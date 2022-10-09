@@ -37,19 +37,18 @@
 
 <main class="container">
     <header class="section header">
-        <div class="header__image-wrapper">
-            <picture>
-                <source srcset="img/happy.webp" type="image/webp">
-                <source srcset="img/happy.jpg" type="image/jpeg">
-                <img class="header__image" src="img/happy.jpg" alt="Me!" onload="this.classList.add('header__image--loaded');" />
-            </picture>
-        </div>
         <h1 class="header__title">Tom Hooijenga</h1>
+
+        <picture class="header__image-wrapper">
+            <source srcset="img/happy.webp" type="image/webp">
+            <source srcset="img/happy.jpg" type="image/jpeg">
+            <img class="header__image" src="img/happy.jpg" alt="Me!" onload="this.classList.add('header__image--loaded');" />
+        </picture>
     </header>
     <section class="section about">
         <h2 class="section__title">About me</h2>
         <p>
-            My name is Tom Hooijenga. I am a dutch software engineer. I've worked on some
+            My name is Tom Hooijenga. I am a Dutch software engineer. I've worked on some
             high traffic sites for both front- and backend.
         </p>
         <p>
